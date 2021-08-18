@@ -8,14 +8,14 @@
 */
 
 const weeklyForecast = [
-  {day: "Monday", temperature: 20, cloudCoverage: "broken", wind: 16},
-  {day: "Thuesday", temperature: 22, cloudCoverage: "few", wind: 10},
-  {day: "Wednesday", temperature: 26, cloudCoverage: "clear", wind: 5},
-  {day: "Thursday", temperature: 24, cloudCoverage: "clear", wind: 5},
-  {day: "Friday", temperature: 24, cloudCoverage: "few", wind: 18},
-  {day: "Saturday", temperature: 19, cloudCoverage: "broken", wind: 25},
-  {day: "Sunday", temperature: 17, cloudCoverage: "overcast", wind: 30}
-]
+  { day: "Monday", temperature: 20, cloudCoverage: "broken", wind: 16 },
+  { day: "Thuesday", temperature: 22, cloudCoverage: "few", wind: 10 },
+  { day: "Wednesday", temperature: 26, cloudCoverage: "clear", wind: 5 },
+  { day: "Thursday", temperature: 24, cloudCoverage: "clear", wind: 5 },
+  { day: "Friday", temperature: 24, cloudCoverage: "few", wind: 18 },
+  { day: "Saturday", temperature: 19, cloudCoverage: "broken", wind: 25 },
+  { day: "Sunday", temperature: 17, cloudCoverage: "overcast", wind: 30 }
+];
 
 /* Map 
 
@@ -31,13 +31,13 @@ The formula for converting Celcius to Faherenheit is:
 Divide by 5, then multiply by 9, then add 32
 
 */
-
-
-
-
-
-
-
+const fahrenheitForecast = weeklyForecast.map((n) => ({
+  day: n.day,
+  temperature: (n.temperature / 5) * 9 + 32,
+  cloudCoverage: n.cloudCoverage,
+  wind: n.wind
+}));
+console.log(fahrenheitForecast);
 
 /* Filter
 
@@ -55,34 +55,50 @@ Divide by 5, then multiply by 9, then add 32
   ]
 
 */
-
-
-
-
+const clearDays = weeklyForecast.filter((d) => {
+  if (d.cloudCoverage === "clear" || d.cloudCoverage === "few") {
+    return {
+      day: d.day,
+      temperature: d.temperature,
+      cloudCoverage: d.cloudCoverage,
+      wind: d.wind
+    };
+  }
+});
+console.log(clearDays);
 
 /*
   Destructuring array -
   Refactor the code below to use destructuring to assign values to these 7 variables
 */
 
-const monday = weeklyForecast[1]
-const tuesday = weeklyForecast[2]
-const wednesday = weeklyForecast[3]
-const thursday = weeklyForecast[4]
-const friday = weeklyForecast[5]
-const saturday = weeklyForecast[6]
-const sunday = weeklyForecast[7]
+// const monday = weeklyForecast[1];
+// const tuesday = weeklyForecast[2];
+// const wednesday = weeklyForecast[3];
+// const thursday = weeklyForecast[4];
+// const friday = weeklyForecast[5];
+// const saturday = weeklyForecast[6];
+// const sunday = weeklyForecast[7];
+
+const [
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday
+] = weeklyForecast;
 
 /*
   Destructuring objects - 
   Refactor the code below to use destructuring to assign values to these 3 variables
 */
 
-const temperature = monday.temperature
-const cloudCoverage = monday.cloudCoverage
-const wind = monday.wind
+// const temperature = monday.temperature;
+// const cloudCoverage = monday.cloudCoverage;
+// const wind = monday.wind;
 
+const { temperature, cloudCoverage, wind } = weeklyForecast;
 
-
-
-
+console.log(`${monday.temperature}, ${monday.cloudCoverage}, ${monday.wind}`);
